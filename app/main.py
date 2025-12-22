@@ -18,3 +18,7 @@ def create_item(item: dict):
 def update_item():
     return {"status": "updated"}
 
+@app.delete("/items/1")
+def delete_item():
+    return {"status": "deleted"}
+
