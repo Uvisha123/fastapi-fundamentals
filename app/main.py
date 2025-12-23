@@ -10,6 +10,13 @@ def root():
 def say_hello():
     return {"message": "Hello FastAPI"}
 
+@app.get("/items/{item_id}")
+def get_item(item_id: int):
+    return {
+        "item_id": item_id,
+        "message": "Item fetched successfully"
+    }
+
 @app.post("/items")
 def create_item(item: dict):
     return {"item_created": item}
@@ -22,15 +29,12 @@ def update_item(item_id: int):
     }
 
 
-@app.delete("/items/1")
-def delete_item():
-    return {"status": "deleted"}
-
-@app.get("/items/{item_id}")
-def get_item(item_id: int):
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int):
     return {
         "item_id": item_id,
-        "message": "Item fetched successfully"
+        "status": "deleted"
     }
+
 
 
