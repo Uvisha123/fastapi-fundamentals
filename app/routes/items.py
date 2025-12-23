@@ -30,3 +30,11 @@ def update_item(item_id: int, item: ItemCreate):
         "item_id": item_id,
         "updated_item": item
     }
+    
+@router.delete("/items/{item_id}")
+def delete_item(item_id: int):
+    return {
+        "item_id": item_id,
+        "status": "deleted"
+    }
+    
