@@ -14,9 +14,13 @@ def say_hello():
 def create_item(item: dict):
     return {"item_created": item}
 
-@app.put("/items/1")
-def update_item():
-    return {"status": "updated"}
+@app.put("/items/{item_id}")
+def update_item(item_id: int):
+    return {
+        "item_id": item_id,
+        "status": "updated"
+    }
+
 
 @app.delete("/items/1")
 def delete_item():
@@ -28,4 +32,5 @@ def get_item(item_id: int):
         "item_id": item_id,
         "message": "Item fetched successfully"
     }
+
 
