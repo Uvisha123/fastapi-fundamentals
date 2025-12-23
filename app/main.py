@@ -36,5 +36,12 @@ def delete_item(item_id: int):
         "status": "deleted"
     }
 
+@app.get("/items")
+def get_items(limit: int = 10):
+    return {
+        "limit": limit,
+        "items": []
+    }
+
 
 
