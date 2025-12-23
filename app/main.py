@@ -22,3 +22,10 @@ def update_item():
 def delete_item():
     return {"status": "deleted"}
 
+@app.get("/items/{item_id}")
+def get_item(item_id: int):
+    return {
+        "item_id": item_id,
+        "message": "Item fetched successfully"
+    }
+
