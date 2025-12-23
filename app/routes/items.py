@@ -1,8 +1,9 @@
 from fastapi import APIRouter
-from app.schemas.item import ItemCreate
-from fastapi import HTTPException
+from app.schemas.item import ItemCreate,ItemOut
 
 router = APIRouter()
+
+fake_db = []
 
 @router.get("/items/{item_id}")
 def get_item(item_id: int):
@@ -19,9 +20,12 @@ def get_items(skip: int = 0, limit: int = 10):
         "items": []
     }
 
-@router.post("/items")
+@router.post("/items", response_model=ItemOut)
 def create_item(item: ItemCreate):
-    return {"item_created": item}
+    new_item = {"id": len(fake_db)+1, **item.dict()}
+    fake_db.append(new_item)
+    return new_item    
+
 
 
 @router.put("/items/{item_id}")
