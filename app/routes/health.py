@@ -19,3 +19,8 @@ def health_check(app_name: str = Depends(get_app_name),source:str=Depends(get_re
         "source":source
         
     }
+    
+@router.get("/async")
+async def health_check():
+    return {"status": "ok"}
+    
