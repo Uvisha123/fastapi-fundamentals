@@ -1,7 +1,7 @@
 from fastapi import APIRouter,Depends
 from app.schemas.item import ItemCreate,ItemOut
 from app.core.deps import get_request_source,get_db,get_current_user
-
+import asyncio
 router = APIRouter()
 
 fake_db = []
@@ -26,7 +26,12 @@ def get_items(skip: int = 0, limit: int = 10):
 def get_items_source(source: str = Depends(get_request_source)):
     return {
         "source": source
-    }    
+    }   
+
+@router.get("/items-async", response_model=list[ItemOut])
+async def get_items_async():
+    await asyncio.sleep(0.5) 
+    return fake_db     
 
 @router.post("/items", response_model=ItemOut)
 def create_item(item: ItemCreate):
